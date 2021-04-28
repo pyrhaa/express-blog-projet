@@ -4,7 +4,7 @@ require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const Blog = require('./models/blog');
+const blogRoutes = require('./routes/blogRoutes');
 
 //express app return object
 const app = express();
@@ -39,6 +39,9 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
   res.render('about', { title: 'About' });
 });
+
+//blog routes
+app.use('/blogs', blogRoutes);
 
 //404 page
 app.use((req, res) => {
